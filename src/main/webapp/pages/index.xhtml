@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
+  <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
@@ -28,18 +28,20 @@
 						<td><h:inputText id="surname" value="#{userMB.user.firstName}">
 								<f:validateLength minimum="5" />
 							</h:inputText></td>
-					</tr>
+					</tr> 
 					<tr>
 						<td><h:commandButton id="addUser" value="Add"
-								action="#{userMB.addUser}" ajax="false" /></td>
+								action="#{userMB.addUser}" /></td>
+<!-- 		immediate=true vrie pour ne pas aller directement à la page si il me manque un champ -->
 						<td><h:commandButton id="reset" value="Reset"
-								action="#{userMB.reset}" ajax="false" immediate="true" /></td>
+								action="#{userMB.reset}" immediate="true" /></td>
 						<td><h:commandButton id="ListUsers" value="List Users"
-								action="list-users" ajax="false" immediate="true" /></td>
+								action="list-users"  immediate="true" /></td>
 					</tr>
 				</table>
-			</h:form>
+			</h:form> 
 		
 
 </h:body>
 </html>
+ 

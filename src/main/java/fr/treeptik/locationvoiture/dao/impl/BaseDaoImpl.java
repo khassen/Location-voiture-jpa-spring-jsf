@@ -1,4 +1,4 @@
-package fr.treeptik.dao;
+package fr.treeptik.locationvoiture.dao.impl;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -10,12 +10,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import fr.treeptik.exception.DAOException;
-import fr.treeptik.model.BaseEntity;
+import fr.treeptik.locationvoiture.dao.BaseDao;
+import fr.treeptik.locationvoiture.exception.DAOException;
+import fr.treeptik.locationvoiture.model.BaseEntity;
 
 
 @SuppressWarnings("unchecked")
@@ -26,6 +23,13 @@ public class BaseDaoImpl<T extends BaseEntity<I>, I extends Serializable>
 	private EntityManager entityManager;
 	private Class<T> type;
 
+	
+//	L EQUIVALET DE 
+//	public GenericDAOJPA(Class<T> type) {
+//		super();
+//		this.type = type;
+//	} DANS LE PROJET LOCATION-VOITURE
+	
 	public BaseDaoImpl() {
 		this.type = (Class<T>) ((ParameterizedType) getClass()
 				.getGenericSuperclass()).getActualTypeArguments()[0];

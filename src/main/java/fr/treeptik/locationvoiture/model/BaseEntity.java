@@ -1,4 +1,4 @@
-package fr.treeptik.model;
+package fr.treeptik.locationvoiture.model;
 
 import java.io.Serializable;
 
@@ -6,6 +6,9 @@ public abstract class BaseEntity<I extends Serializable> implements
 		Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+//	J'OBJIGE MES DONNÉES MEMBRES "OBJETS" À AVOIR UN ID:
+//FAIRE PLUS FACILEMENTS DES REQUETES GENERIQUES ET DES ASPETS
 	
 	protected I id;
 

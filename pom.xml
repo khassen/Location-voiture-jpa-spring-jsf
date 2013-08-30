@@ -9,7 +9,8 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 	<version>1.0-SNAPSHOT</version>
 	<name>MavenSpringJsfTemplate</name>
 	<url>http://maven.apache.org</url>
-
+	
+<!-- pour ajouter le primeFaces -->
 	<repositories>
 		<repository>
 			<id>prime-repo</id>
@@ -21,7 +22,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.6</java.version>
+		<java.version>1.7</java.version>
 		<spring.version>3.2.3.RELEASE</spring.version>
 		<spring.security.version>3.1.4.RELEASE</spring.security.version>
 		<hibernate.version>4.2.2.Final</hibernate.version>
@@ -90,7 +91,7 @@ http://maven.apache.org/maven-v4_0_0.xsd">
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>3.1.1</version>
+			<version>3.5</version>
 		</dependency>
 
 		<!-- Hibernate library -->

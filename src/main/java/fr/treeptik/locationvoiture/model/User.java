@@ -1,4 +1,4 @@
-package fr.treeptik.model;
+package fr.treeptik.locationvoiture.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

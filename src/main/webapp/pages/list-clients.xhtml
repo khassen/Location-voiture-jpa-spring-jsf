@@ -7,38 +7,43 @@
 </h:head>
 <h:body>
 	<h:form>
-		<h:outputText value="USERs : "></h:outputText>
-		<h:dataTable id="users" var="user" value="#{userMB.userList}"
+		<h:outputText value="Clients : "></h:outputText>
+		<h:dataTable id="clients" var="client" value="#{clientMB.clientList}"
 			style="width: 10%">
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="ID" />
 				</f:facet>
-				<h:outputText value="#{user.id}" />
+				<h:outputText value="#{client.id}" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Nom" />
 				</f:facet>
-				<h:outputText value="#{user.lastName}" />
-				<!-- ou on peut faire directement #{user.lastName} comme dans spring -->
+				<h:outputText value="#{client.nom}" />
+				<!-- ou on peut faire directement #{client.nom} comme dans spring -->
 
 			</h:column>
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Prenom" />
 				</f:facet>
-				<h:outputText value="#{user.firstName}" />
+				<h:outputText value="#{client.prenom}" />
 			</h:column>
 
-	
+				<h:column>
+				<f:facet name="header">
+					<h:outputText value="Email" />
+				</f:facet>
+				<h:outputText value="#{client.email}" />
+			</h:column>
 			
 			<h:column>
 				<f:facet name="header">
 					<h:outputText value="Action" />
 				</f:facet>
 				<h:commandLink id="reset" 
-						action="#{userMB.deleteUser}" value="Supprimer"/>
+						action="#{clientMB.deleteClient}" value="Supprimer"/>
 			</h:column>
 
 		</h:dataTable>

@@ -1,9 +1,9 @@
-package fr.treeptik.service;
+package fr.treeptik.locationvoiture.service;
  
 import java.util.List;
 
-import fr.treeptik.exception.ServiceException;
-import fr.treeptik.model.User;
+import fr.treeptik.locationvoiture.exception.ServiceException;
+import fr.treeptik.locationvoiture.model.User;
  
 public interface UserService {
  

@@ -1,4 +1,4 @@
-package fr.treeptik.exception;
+package fr.treeptik.locationvoiture.exception;
 
 public class DAOException extends Exception {
 

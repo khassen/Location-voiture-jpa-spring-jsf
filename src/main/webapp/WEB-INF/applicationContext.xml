@@ -7,24 +7,32 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
-	> 
-	<context:annotation-config/>
-    <context:component-scan base-package="fr.treeptik"/>
-    
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="com.mysql.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/jsfspring" />
-        <property name="user" value="root" />
-        <property name="password" value="root" />
-        <property name="maxPoolSize" value="10" />
-        <property name="minPoolSize" value="5" />
-    </bean>
- 
-   <bean id="entityManagerFactory"
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+	<context:annotation-config />
+	<context:component-scan base-package="fr.treeptik" />
+	
+<!-- Fichier de conf de sprring
+une nouvelle data source avec un pool de connection: 2 propri supplimentaires -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/jsfspring" />
+		<property name="user" value="root" />
+		<property name="password" value="root" />
+
+		<!-- par defaut pour chaque requete le serveur va creer un objet de connection, la, on a ajouté deux choses pour gerer 
+		le pool de connection
+			au demmarage il va creer 5 objet de connection, -->
+		<!-- si je depasse 5 il me cree encore 5, et si je depasse la 11 emme va 
+			creer une erreur, aprés c jboss qui nous creera le pool de connection -->
+		<property name="maxPoolSize" value="10" />
+		<property name="minPoolSize" value="5" />
+	</bean>
+
+	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="fr.treeptik.model" />
+		<property name="packagesToScan" value="fr.treeptik.locationvoiture.model" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="showSql" value="true" />
@@ -38,5 +46,5 @@
 		p:entityManagerFactory-ref="entityManagerFactory" />
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
- 
+
 </beans>
