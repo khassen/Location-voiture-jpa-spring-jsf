@@ -5,13 +5,16 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
+
+<f:view locale="#{localeMB.locale}"/>
+
 <h:head>
 	<!-- <f:view locale="en" /> -->
 	<title><ui:insert name="titre" /></title>
+<h:form> <h:commandLink action="#{localeMB.changeLocaleToFr}" value="FR"/> --- <h:commandLink action="#{localeMB.changeLocaleToEn}" value="EN"/>  </h:form>
 
 
-
-	<style type="text/css">
+<style type="text/css">
 </style>
 </h:head>
 

@@ -6,47 +6,69 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <ui:composition template="template.xhtml">
-	<ui:define name="titre">List</ui:define>
+	<ui:define name="titre">#{msg['titre.saisie.voiture']}</ui:define>
+	<ui:define name="titre body">#{msg['titre.saisie.voiture']}</ui:define>
 	<ui:define name="body">
 
 
-	<h:form>
+		<h:form>
 
-		<table>
+			<table>
 
-			<tr>
-				<td><h:outputLabel for="marque" value="Marque : " /></td>
-				<td><h:inputText id="marque"
-						value="#{voitureMB.voiture.marque}" required="true">
-						<f:validateLength minimum="3" />
-					</h:inputText></td>
-			</tr>
-			<tr>
-				<td><h:outputLabel for="model" value="Model : " /></td>
-				<td><h:inputText id="model" value="#{voitureMB.voiture.model}">
-						<f:validateLength minimum="3" />
-					</h:inputText></td>
-			</tr>
+				<tr>
+					<td><h:outputLabel for="marque"
+							value="#{msg['voiture.marque']} : " /></td>
 
-			<tr>
-				<td><h:outputLabel for="date" value="Date M.E.C : " /></td>
-				<td><h:inputText id="email"
-						value="#{voitureMB.voiture.dateMiseEnCirculation}">
-						<f:validateLength minimum="10" />
-						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Paris" />
-					</h:inputText></td>
-			</tr>
 
-		</table>
+					<!-- keyboard permet d'avoir un clavier virtuel -->
+					<td><p:keyboard id="marque"
+							value="#{voitureMB.voiture.marque}" required="true"
+							label="#{msg['voiture.marque']}">
+							<f:validateLength minimum="2" />
+						</p:keyboard> <h:message for="marque" /></td>
+				</tr>
 
-		<div class="form-actions">
-			<h:commandButton action="#{voitureMB.saveVoiture}"
-				value="Enregistrer" styleClass="btn primary" />
+				<tr>
+					<td><h:outputLabel for="modele"
+							value="#{msg['voiture.model']} : " /></td>
+					<td><p:keyboard id="modele" value="#{voitureMB.voiture.model}"
+							required="true" label="#{msg['voiture.model']}">
+							<f:validateLength minimum="1" />
+						</p:keyboard> <h:message for="modele" /></td>
+				</tr>
 
-			<h:commandButton action="list-voitures" value="Annuler"
-				styleClass="btn" immediate="true" />
-		</div>
-	</h:form>
+				<tr>
+					<td><h:outputLabel for="dateMiseEnCirculation"
+							value="#{msg['voiture.date']} :" /></td>
+
+
+					<td><p:calendar
+							value="#{voitureMB.voiture.dateMiseEnCirculation}"
+							id="popupButtonCal" showOn="button"
+							validator="#{voitureMB.validateDateMiseEnCirculation}"
+							label="#{msg['voiture.date']}" required="true" />
+						<h:message for="dateMiseEnCirculation" /></td>
+				</tr>
+				<tr>
+
+					<td><h:commandButton action="#{voitureMB.saveVoiture}"
+							value="#{msg['bouton.ajout']}" ajax="false"
+							styleClass="btn btn-success" /></td>
+
+					<!-- Action est d'appeler la methode saveClient de l'objet clientMB avec immediate="true" sans passer par la validation du formulaire -->
+
+
+					<td><h:commandButton action="list-voitures"
+							value="#{msg['annuler.voiture']}" ajax="false" immediate="true"
+							styleClass="btn btn-default" /></td>
+
+				</tr>
+
+			</table>
+
+
+
+		</h:form>
 
 
 	</ui:define>

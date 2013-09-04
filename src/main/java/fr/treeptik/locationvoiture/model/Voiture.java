@@ -34,7 +34,7 @@ public class Voiture implements Serializable{
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="dd/MM/yyyy")
-	private Date dateMiseEnCirculation;
+	private Date dateMiseEnCirculation = new Date();
 	
 	@OneToMany(mappedBy="voiture")
 	private List<Reservation> reservations;

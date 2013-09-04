@@ -1,18 +1,28 @@
 package fr.treeptik.locationvoiture.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.ResourceBundle;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.faces.validator.ValidatorException;
 
 import fr.treeptik.locationvoiture.exception.ServiceException;
 import fr.treeptik.locationvoiture.model.Voiture;
 import fr.treeptik.locationvoiture.service.VoitureService;
 
 @ManagedBean(name = "voitureMB", eager = true)
+//Pour utiliser Primefaces
+//@SessionScoped
 public class VoitureController {
 
 	private static final long serialVersionUID = 1L;
@@ -23,8 +33,39 @@ public class VoitureController {
 	private ListDataModel<Voiture> listDataModel;
 
 	private Voiture voiture = new Voiture();
+
+	
+	
+	// Les Validators
+	public void validateDateMiseEnCirculation(FacesContext context,
+			UIComponent component, Object date)   {
+		dateMiseEnCirculation = (Date) date;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		String stringCourant = dateFormat.format(new Date());
+		Date dateCourante = null;
+	
+	    try {
+			dateCourante = dateFormat.parse(stringCourant);
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		if (dateCourante.before(dateMiseEnCirculation)) {
+			// Internationalisation des messages d'erreur
+			ResourceBundle bundle = ResourceBundle.getBundle("messages",
+					context.getViewRoot().getLocale());
+			throw new ValidatorException(new FacesMessage(
+					bundle.getString("erreur.voiture.date")));
+		}
+
+	}
+
+	
 	
 	private List<SelectItem> selectVoiture = new ArrayList<>();
+
+	private Date dateMiseEnCirculation;
 
 	public String saveVoiture() throws ServiceException {
 
@@ -61,22 +102,22 @@ public class VoitureController {
 		voiture = new Voiture();
 		return findAllVoiture();
 	}
-	
-	public String selectVoiture() throws ServiceException{
-	
+
+	public String selectVoiture() throws ServiceException {
+
 		voiture = listDataModel.getRowData();
 		return "update-voiture";
 	}
-    
-	public String updateVoiture() throws ServiceException{
-		
+
+	public String updateVoiture() throws ServiceException {
+
 		getVoitureService().update(voiture);
 		listDataModel = new ListDataModel<>();
 		listDataModel.setWrappedData(voitureService.findAll());
 
 		return "list-voitures";
 	}
-	
+
 	public VoitureService getVoitureService() {
 		return voitureService;
 	}
@@ -84,8 +125,6 @@ public class VoitureController {
 	public void setVoitureService(VoitureService voitureService) {
 		this.voitureService = voitureService;
 	}
-
-
 
 	public Voiture getVoiture() {
 		return voiture;
@@ -104,12 +143,12 @@ public class VoitureController {
 	}
 
 	public List<SelectItem> getSelectVoiture() throws ServiceException {
-		
+
 		List<Voiture> voitures = voitureService.findAll();
 		for (Voiture voiture : voitures) {
 
-		selectVoiture.add(new SelectItem(voiture.getId(), voiture.getMarque() + " - "
-		+ voiture.getModel()));
+			selectVoiture.add(new SelectItem(voiture.getId(), voiture
+					.getMarque() + " - " + voiture.getModel()));
 
 		}
 

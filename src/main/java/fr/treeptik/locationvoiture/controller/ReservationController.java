@@ -1,8 +1,17 @@
 package fr.treeptik.locationvoiture.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.ResourceBundle;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
+import javax.faces.validator.ValidatorException;
 
 import fr.treeptik.locationvoiture.exception.ServiceException;
 import fr.treeptik.locationvoiture.model.Client;
@@ -18,11 +27,17 @@ public class ReservationController {
 	@ManagedProperty(value = "#{reservationService}")
 	private ReservationService reservationService;
 
+	// Variable pour recupérer les dates des champs des pages xhtml
+	private Date dateResev;
+	private Date datePriseVehicule;
+	private Date dateRetour;
+	
+	
 	private Reservation reservation;
 
 	private ListDataModel<Reservation> listDataModel;
 
-	public ReservationController () {
+	public ReservationController() {
 
 		reservation = new Reservation();
 		reservation.setClient(new Client());
@@ -39,15 +54,41 @@ public class ReservationController {
 
 	public ListDataModel<Reservation> getResrvationList()
 			throws ServiceException {
-		
-		listDataModel = new ListDataModel<Reservation>(reservationService.findAll());
+
+		listDataModel = new ListDataModel<Reservation>(
+				reservationService.findAll());
 		return listDataModel;
 	}
 
+	
+	public void validateDatePriseVehicule(FacesContext context,
+			UIComponent component, Object date) {
+		dateResev = (Date) date;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		String date1 = dateFormat.format(new Date()); 
+		Date dateCourante = null;
+		try {
+			dateCourante = dateFormat.parse(date1);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		if (dateCourante.after(dateResev) && !dateCourante.equals(dateResev)) {
+			// Internationalisation des messages d'erreur
+			ResourceBundle bundle = ResourceBundle.getBundle("messages", context.getViewRoot()
+			.getLocale());
+			throw new ValidatorException(new FacesMessage(
+					bundle.getString("erreur.reservation.date.reservation")));
+		}
+	}
+	
+	
+	
+
+	
 	public void reset() {
 		reservation = new Reservation();
 	}
-	
+
 	public String deleteReservation() throws Exception {
 
 		reservation = listDataModel.getRowData();
@@ -55,9 +96,9 @@ public class ReservationController {
 		reservationService.remove(reservation.getId());
 
 		return findAllReservation();
-		
-		}
-	
+
+	}
+
 	public String selectUpdate() throws ServiceException {
 
 		reservation = listDataModel.getRowData();
@@ -74,10 +115,10 @@ public class ReservationController {
 		return "list-reservations";
 
 	}
-	
 
 	public String findAllReservation() throws ServiceException {
-		listDataModel = new ListDataModel<Reservation>(reservationService.findAll());
+		listDataModel = new ListDataModel<Reservation>(
+				reservationService.findAll());
 		String result = "list-reservations";
 
 		if (listDataModel.getRowCount() == 0) {
@@ -88,9 +129,6 @@ public class ReservationController {
 		return result;
 	}
 
-	
-
-	
 	public ReservationService getReservationService() {
 		return reservationService;
 	}
