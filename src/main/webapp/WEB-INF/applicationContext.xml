@@ -7,7 +7,10 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+	   http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	    http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd ">
 	<context:annotation-config />
 	<context:component-scan base-package="fr.treeptik" />
 	
@@ -46,5 +49,34 @@ une nouvelle data source avec un pool de connection: 2 propri supplimentaires --
 		p:entityManagerFactory-ref="entityManagerFactory" />
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
+
+
+<!-- 	<security:http> -->
+<!-- 		tte les url sont securisés et il faut s'iauthentifier pour accéder  -->
+<!-- 		<security:intercept-url pattern="/**" access="ROLE_USER" /> -->
+
+<!-- 		<security:form-login login-page="/pages/login.jsp" -->
+<!-- 			default-target-url="/begin.do" /> -->
+
+<!-- 		<security:logout logout-success-url="/pages/login.jsp" /> -->
+<!-- 	</security:http> -->
+
+<!-- 	<security:authentication-manager> -->
+<!-- 		<security:authentication-provider> -->
+<!-- 			<security:user-service> -->
+<!-- 				<security:user name="admin" password="AQWZSX" -->
+<!-- 					authorities="ROLE_USER" /> -->
+<!-- 			</security:user-service> -->
+<!-- 		</security:authentication-provider> -->
+
+<!-- 		<security:authentication-provider> -->
+<!-- 			<security:jdbc-user-service -->
+<!-- 				data-source-ref="dataSource" -->
+<!-- 				users-by-username-query="Select nom as login, password, 'true' as -->
+<!--          enabled From users where nom=?" -->
+<!-- 				authorities-by-username-query="Select nom, role from users u join roles r on r.userid=u.id where u.nom=? " /> -->
+<!-- 		</security:authentication-provider> -->
+
+<!-- 	</security:authentication-manager> -->
 
 </beans>

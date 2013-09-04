@@ -1,0 +1,73 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="template.xhtml">
+	<ui:define name="titre">List</ui:define>
+	<ui:define name="body">
+
+	<h:form class="centre">
+		<p:dataTable
+			
+			value="#{reservationMB.resrvationList}" var="reservation">
+			<p:column rendered="false">
+				<f:facet name="header">
+					<h:outputText value="Id" />
+				</f:facet>
+				<h:outputText value="#{reservation.id}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Date Reservation" />
+				</f:facet>
+				<h:outputText value="#{reservation.dateResev}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="date Prise" />
+				</f:facet>
+				<h:outputText value="#{reservation.datePrise}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="date Retour" />
+				</f:facet>
+				<h:outputText value="#{reservation.dateRetour}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Voiture" />
+				</f:facet>
+				<h:outputText value="#{reservation.voiture.marque}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Client" />
+				</f:facet>
+				<h:outputText value="#{reservation.client.nom}" />
+			</p:column>
+
+			<p:column>
+				<h:commandLink action="#{reservationMB.selectUpdate}"
+					value="Modifier" />
+				
+			</p:column>
+			<p:column>	
+				<h:commandLink
+					onclick="if (! confirm('Voulez-vous vraiment effectuer la suppression?') ) { return false;}; return true; "
+					action="#{reservationMB.deleteReservation}" value="Supprimer" />
+			
+
+			</p:column>
+		</p:dataTable>
+			<h:commandButton id="Index"  value="Retour"
+			action="save-reservation" ajax="false" immediate="true" />
+	</h:form>
+	</ui:define>
+</ui:composition>
+</html>

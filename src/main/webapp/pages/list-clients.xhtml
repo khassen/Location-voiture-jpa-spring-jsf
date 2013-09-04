@@ -1,53 +1,65 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<title>JSF_Spring_Hibernate_Project</title>
-</h:head>
-<h:body>
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="template.xhtml">
+	<ui:define name="titre">List</ui:define>
+	<ui:define name="body">
+
+
 	<h:form>
-		<h:outputText value="Clients : "></h:outputText>
-		<h:dataTable id="clients" var="client" value="#{clientMB.clientList}"
-			style="width: 10%">
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="ID" />
-				</f:facet>
-				<h:outputText value="#{client.id}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Nom" />
-				</f:facet>
-				<h:outputText value="#{client.nom}" />
-				<!-- ou on peut faire directement #{client.nom} comme dans spring -->
+			<h:outputText value="Liste des lients : " align="center"></h:outputText>
+			<p:dataTable id="clients" var="client" value="#{clientMB.clientList}"
+				style="width: 10%">
 
-			</h:column>
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Prenom" />
-				</f:facet>
-				<h:outputText value="#{client.prenom}" />
-			</h:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="ID" />
+					</f:facet>
+					<h:outputText value="#{client.id}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Nom" />
+					</f:facet>
+					<h:outputText value="#{client.nom}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Prenom" />
+					</f:facet>
+					<h:outputText value="#{client.prenom}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Email" />
+					</f:facet>
+					<h:outputText value="#{client.email}" />
+				</p:column>
 
-				<h:column>
-				<f:facet name="header">
-					<h:outputText value="Email" />
-				</f:facet>
-				<h:outputText value="#{client.email}" />
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">
-					<h:outputText value="Action" />
-				</f:facet>
-				<h:commandLink id="reset" 
-						action="#{clientMB.deleteClient}" value="Supprimer"/>
-			</h:column>
 
-		</h:dataTable>
-	</h:form>
-</h:body>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Action" />
+					</f:facet>
+					<h:commandLink id="delete" action="#{clientMB.deleteClient}"
+						value="Supprimer" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Action" />
+					</f:facet>
+					<h:commandLink id="update" action="#{clientMB.selectUpdate}"
+						value="Update" />
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
 
 </html>

@@ -4,14 +4,12 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	
+
 <ui:composition template="template.xhtml">
 	<ui:define name="titre">List</ui:define>
 	<ui:define name="body">
-
-
 	<h:form>
-
+		<h:inputHidden value="#{clientMB.client.id}" />
 		<table>
 
 			<tr>
@@ -35,21 +33,26 @@
 					</h:inputText></td>
 			</tr>
 
-			<tr>
-				<td><h:commandButton id="addClient" value="Add"
-						action="#{clientMB.save}" /></td>
-				<!-- immediate=true vrAie pour ne pas aller directement à la page si il manque un champ -->
-				<td><h:commandButton id="reset" value="Reset"
-						action="#{clientMB.reset}" immediate="true" /></td>
-				<td><h:commandButton id="ListClients" value="List Clients"
-						action="list-clients" immediate="true" /></td>
-			</tr>
-		</table>
-	</h:form>
+		
 
+		</table>
+
+					<f:facet name="header">
+						<h:outputText value="Action" />
+					</f:facet>
+					<h:commandLink id="update" action="#{clientMB.updateClient}"
+						value="Update" />
+		
+
+	</h:form>
 	</ui:define>
 </ui:composition>
 </html>
+
+
+
+
+
 
 
 

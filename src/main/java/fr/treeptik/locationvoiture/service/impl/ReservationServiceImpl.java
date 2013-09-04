@@ -7,7 +7,7 @@ import fr.treeptik.locationvoiture.dao.ReservationDAO;
 import fr.treeptik.locationvoiture.model.Reservation;
 import fr.treeptik.locationvoiture.service.ReservationService;
 
-@Service
+@Service("reservationService")
 public class ReservationServiceImpl extends GenericServiceImpl<Reservation, Integer, ReservationDAO> implements ReservationService {
 
 	@Autowired

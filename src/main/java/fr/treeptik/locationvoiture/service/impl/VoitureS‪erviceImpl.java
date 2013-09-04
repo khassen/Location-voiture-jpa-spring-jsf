@@ -9,7 +9,7 @@ import fr.treeptik.locationvoiture.service.VoitureService;
 
 
 
-@Service
+@Service("voitureService")
 public class VoitureS‪erviceImpl extends GenericServiceImpl<Voiture, Integer, VoitureDAO> implements VoitureService{
 
 	

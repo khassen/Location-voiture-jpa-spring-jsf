@@ -1,0 +1,150 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<!-- <f:view locale="en" /> -->
+	<title><ui:insert name="titre" /></title>
+
+
+
+	<style type="text/css">
+</style>
+</h:head>
+
+<h:body>
+
+	<!-- 		<p:galleria value="#{ImageMB.images}" var="image" panelWidth="500" -->
+	<!-- 			panelHeight="313" showCaption="true"> -->
+	<!-- 			<p:graphicImage value="/pages/images/#{voiture.model}" -->
+	<!-- 				alt="Image Description for #{image}" title="#{image}" /> -->
+	<!-- 		</p:galleria> -->
+
+	<table>
+		<tr>
+			<td><p:galleria id="contentGalleria" value="#{ImageMB.voitures}"
+					var="voiture" panelWidth="300" panelHeight="200" frameWidth="48"
+					frameHeight="65" effect="clip">
+
+					<p:graphicImage id="voitureImage"
+						value="/pages/images/#{voiture.model}" alt="#{images}"
+						title="#{voiture.marque}" />
+					<f:facet name="content">
+						<h:panelGrid columns="2" cellpadding="5">
+							<f:facet name="header">
+								<p:graphicImage value="/pages/images/#{voiture.model}" />
+							</f:facet>
+
+							<h:outputText value="Marque: " />
+							<h:outputText id="name" value="#{voiture.marque}" />
+
+							<!-- 					<h:outputText value="Modele " /> -->
+							<!-- 					<h:outputText id="number" value="#{voiture.model}" /> -->
+						</h:panelGrid>
+					</f:facet>
+
+				</p:galleria></td>
+			
+			
+			<td><h:form>
+					<p:growl id="messages" />
+
+					<h3>Ma belle voiture !</h3>
+			
+						<p:menubar>
+							<p:submenu label="Add" icon="ui-icon-document">
+								<p:submenu label="New" icon="ui-icon-contact">
+									<p:menuitem value="Voiture" url="save-voiture.jsf" />
+									<p:menuitem value="Client" url="save.client.jsf" />
+									<p:menuitem value="Reservation" url="save-reservation.jsf" />
+								</p:submenu>
+								<p:menuitem value="Quit" url="acceuil.jsf" />
+							</p:submenu>
+
+							<p:submenu label="Update" icon="ui-icon-pencil">
+								<p:menuitem value="Voiture" url="list-voitures.jsf"
+									icon="ui-icon-arrowreturnthick-1-w" />
+								<p:menuitem value="Client" url="list-clients.jsf"
+									icon="ui-icon-arrowreturnthick-1-w" />
+								<p:menuitem value="Reservation" url="list-reservations.jsf"
+									icon="ui-icon-arrowreturnthick-1-e" />
+							</p:submenu>
+
+							<p:submenu label="Search" icon="ui-icon-help">
+
+								<p:menuitem value="Lis-Voiture" url="list-voitures.jsf"
+									icon="ui-icon-arrowreturnthick-1-w" />
+								<p:menuitem value="List-Client" url="list-clients.jsf"
+									icon="ui-icon-arrowreturnthick-1-w" />
+								<p:menuitem value="List-Reservation" url="list-reservations.jsf"
+									icon="ui-icon-arrowreturnthick-1-e" />
+								<!-- <p:menuitem value="Image-voiture" url="Image.jsf" /> -->
+
+
+								<!-- 				<p:submenu label="Search" icon="ui-icon-search"> -->
+								<!-- 					<p:submenu label="Text"> -->
+
+							</p:submenu>
+
+							<p:submenu label="Actions" icon="ui-icon-gear">
+								<p:submenu label="delete" icon="ui-icon-delete">
+									<p:menuitem value="Voiture" url="list-voitures.jsf"
+										icon="ui-icon-arrowreturnthick-1-w" />
+									<p:menuitem value="Client" url="list-clients.jsf"
+										icon="ui-icon-arrowreturnthick-1-w" />
+									<p:menuitem value="Reservation" url="list-reservations.jsf"
+										icon="ui-icon-arrowreturnthick-1-e" />
+
+								</p:submenu>
+							</p:submenu>
+
+
+							<p:menuitem value="Quit" url="acceuil.jsf" icon="ui-icon-close" />
+
+
+							<f:facet name="options">
+								<p:inputText style="margin-right:10px" />
+								<p:commandButton type="button" value="Logout"
+									icon="ui-icon-extlink" />
+							</f:facet>
+						</p:menubar>
+
+					
+
+
+				</h:form></td>
+
+		</tr>
+		
+		
+	
+		
+	</table>
+<table>
+<tr><td></td>
+<td></td></tr>
+<tr>
+<td></td>
+<td></td>
+<td align="center"><ui:insert name="body"  /></td>
+
+</tr>
+</table>	
+
+
+
+
+</h:body>
+<footer>
+	<p:menubar autoDisplay="False">  
+            //same content as default menubar  
+        </p:menubar>
+	<p align="center">
+		<a href="http://www.treeptik.fr/#!/">Treeptik.fr</a> <a>Treeptik ©
+			2012 • information légale •</a>
+	</p>
+</footer>
+</html>

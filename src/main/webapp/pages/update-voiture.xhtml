@@ -1,0 +1,55 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="template.xhtml">
+	<ui:define name="titre">List</ui:define>
+	<ui:define name="body">
+	<h:form>
+		<h:inputHidden value="#{voitureMB.voiture.id}" />
+		<table>
+
+			<tr>
+				<td><h:outputLabel for="marque" value="Marque : " /></td>
+				<td><h:inputText id="marque"
+						value="#{voitureMB.voiture.marque}" required="true">
+						<f:validateLength minimum="3" />
+					</h:inputText></td>
+			</tr>
+			<tr>
+				<td><h:outputLabel for="model" value="Model : " /></td>
+				<td><h:inputText id="model" value="#{voitureMB.voiture.model}">
+						<f:validateLength minimum="3" />
+					</h:inputText></td>
+			</tr>
+
+			<tr>
+				<td><h:outputLabel for="date" value="Date M.E.C : " /></td>
+				<td><h:inputText id="email"
+						value="#{voitureMB.voiture.dateMiseEnCirculation}">
+						<f:validateLength minimum="10" />
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Paris" />
+					</h:inputText></td>
+			</tr>
+
+		</table>
+
+		<div class="form-actions">
+			<h:commandButton action="#{voitureMB.updateVoiture}"
+				value="Enregistrer" styleClass="btn primary" />
+
+			<h:commandButton action="list-voitures" value="Annuler"
+				styleClass="btn" immediate="true" />
+		</div>
+	</h:form>
+
+
+	</ui:define>
+</ui:composition>
+</html>
+
+
+
