@@ -19,7 +19,7 @@
 
 		<param name="maxFileSize" value="2000KB" />
 		<param name="MaxBackupIndex" value="10" />
-		<param name="File" value="${catalina.home}/logs/locationvoiture.log" />
+		<param name="File" value="${catalina.home}/logs/locationvoiture-jsf-spring-info.log" />
 		<param name="threshold" value="info" />
 
 		<layout class="org.apache.log4j.PatternLayout">
@@ -32,7 +32,7 @@
 
 		<param name="maxFileSize" value="2000KB" />
 		<param name="MaxBackupIndex" value="10" />
-		<param name="File" value="${catalina.home}/logs/locationvoiture-errors.log" />
+		<param name="File" value="${catalina.home}/logs/locationvoiture-jsf-spring-errors.log" />
 		<param name="threshold" value="error" />
 
 		<layout class="org.apache.log4j.PatternLayout">
@@ -42,8 +42,7 @@
 	</appender>
 
 
-
-	<!-- Application Loggers -->
+	<!-- Application Loggers , je declare le logger-->
 
 
 	<logger name="fr.treeptik">

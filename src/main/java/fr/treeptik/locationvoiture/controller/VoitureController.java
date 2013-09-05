@@ -16,6 +16,8 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.faces.validator.ValidatorException;
 
+import org.apache.log4j.Logger;
+
 import fr.treeptik.locationvoiture.exception.ServiceException;
 import fr.treeptik.locationvoiture.model.Voiture;
 import fr.treeptik.locationvoiture.service.VoitureService;
@@ -34,7 +36,7 @@ public class VoitureController {
 
 	private Voiture voiture = new Voiture();
 
-	
+	private Logger logger = Logger.getLogger(ClientController.class);
 	
 	// Les Validators
 	public void validateDateMiseEnCirculation(FacesContext context,
@@ -68,7 +70,7 @@ public class VoitureController {
 	private Date dateMiseEnCirculation;
 
 	public String saveVoiture() throws ServiceException {
-
+		logger.info("Appel formCreate Methode GET");
 		voiture = getVoitureService().save(voiture);
 
 		return "list-voitures";
