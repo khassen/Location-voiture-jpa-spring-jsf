@@ -33,5 +33,6 @@ public class LocaleManagerBean {
 	public void setLocale(Locale locale) {
 		this.locale = locale;
 	}
+	
 
 }
