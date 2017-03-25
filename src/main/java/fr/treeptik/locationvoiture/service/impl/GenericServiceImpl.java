@@ -43,7 +43,10 @@ public abstract class GenericServiceImpl<T, PK, D extends GenericDAO<T, PK>> imp
 			throw new ServiceException(e.getMessage(), e.getCause());
 		}
 	}
-
+/*
+ * (non-Javadoc)
+ * @see fr.treeptik.locationvoiture.service.GenericService#findAll()
+ */
 	@Override
 //	@Transactional(propagation=Propagation.MANDATORY)
 	public List<T> findAll() throws ServiceException {
